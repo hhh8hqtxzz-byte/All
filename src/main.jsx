@@ -703,6 +703,11 @@ function App() {
     if (ref) localStorage.setItem("referralCode", ref);
   }, []);
 
+  useEffect(() => {
+    if (!api.session) return;
+    if (view === "admin" && api.session.user.role !== "admin") setView("home");
+  }, [api.session?.user?.id, api.session?.user?.role, view]);
+
   const page = useMemo(() => {
     if (!api.session) return <Auth api={api} />;
     if (view === "packages") return <Packages api={api} />;
