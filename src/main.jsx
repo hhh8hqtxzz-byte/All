@@ -86,10 +86,10 @@ function Header({ session, logout, view, setView, language, setLanguage }) {
   return (
     <header className="app-header">
       <div className="brand" onClick={() => setView("home")}>
-        <span className="brand-icon">₨</span>
+        <span className="brand-icon">EP</span>
         <div>
           <strong>EarnInvest Pro</strong>
-          <small>Pakistan earning platform MVP</small>
+          <small>Smart earning dashboard</small>
         </div>
       </div>
       <nav>
@@ -145,17 +145,19 @@ function Auth({ api }) {
   return (
     <main className="auth-page">
       <section className="hero">
-        <div className="badge">Pakistan Market · MVP</div>
-        <h1>Investment packages + daily task earnings + referrals</h1>
+        <div className="hero-orbit one" />
+        <div className="hero-orbit two" />
+        <div className="badge">Pakistan Market · Premium MVP</div>
+        <h1>Grow daily with packages, tasks, and referrals</h1>
         <p>
-          Development build with signup/login without OTP, manual deposits, manual withdrawals, full admin controls, wallets,
-          tasks, and referral tracking.
+          A polished mobile-first earning platform with wallet controls, task rewards, manual deposits, withdrawals, referrals,
+          and complete admin management.
         </p>
         <div className="hero-grid">
-          <span>6 packages</span>
+          <span>6 premium packages</span>
           <span>5+ task categories</span>
           <span>3-level referrals</span>
-          <span>Mobile responsive</span>
+          <span>Mobile responsive UI</span>
         </div>
       </section>
       <form className="card auth-card" onSubmit={submit}>
@@ -200,7 +202,7 @@ function Auth({ api }) {
 
 function StatCard({ label, value, hint }) {
   return (
-    <article className="stat-card">
+    <article className="stat-card reveal-card">
       <span>{label}</span>
       <strong>{value}</strong>
       {hint ? <small>{hint}</small> : null}
@@ -219,7 +221,10 @@ function Home({ api, setView }) {
           <h1>Today’s earning dashboard</h1>
           <p>Complete daily tasks to unlock package earnings, referral commissions, and bonus rewards.</p>
         </div>
-        <button onClick={() => setView("tasks")}>Start tasks</button>
+        <div className="hero-actions">
+          <button onClick={() => setView("tasks")}>Start tasks</button>
+          <button className="light-button" onClick={() => setView("wallet")}>Open wallet</button>
+        </div>
       </section>
       <section className="stats-grid">
         <StatCard label="Main wallet" value={money(wallets.main)} />
@@ -722,6 +727,8 @@ function App() {
 
   return (
     <>
+      <div className="app-bg one" />
+      <div className="app-bg two" />
       {api.session && (
         <Header session={api.session} logout={api.logout} view={view} setView={setView} language={language} setLanguage={setLanguage} />
       )}
