@@ -703,6 +703,11 @@ function App() {
     if (ref) localStorage.setItem("referralCode", ref);
   }, []);
 
+  useEffect(() => {
+    if (!api.session) return;
+    if (view === "admin" && api.session.user.role !== "admin") setView("home");
+  }, [api.session?.user?.id, api.session?.user?.role, view]);
+
   const page = useMemo(() => {
     if (!api.session) return <Auth api={api} />;
     if (view === "packages") return <Packages api={api} />;
@@ -711,7 +716,7 @@ function App() {
     if (view === "referrals") return <Referrals api={api} />;
     if (view === "leaderboard") return <Leaderboard publicData={api.publicData} />;
     if (view === "support") return <Support />;
-    if (view === "admin") return <Admin api={api} />;
+    if (view === "admin" && api.session.user.role === "admin") return <Admin api={api} />;
     return <Home api={api} setView={setView} />;
   }, [api.session, view, api.publicData, api.history, api.adminDb]);
 
