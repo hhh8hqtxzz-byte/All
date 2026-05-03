@@ -1017,6 +1017,7 @@ nav button:hover {
   }
 
   .auth-page {
+    grid-template-columns: 1fr;
     align-items: start;
     padding-top: 1.5rem;
   }
@@ -1039,6 +1040,11 @@ nav button:hover {
   .stats-grid,
   .hero-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .auth-card {
+    width: 100%;
+    min-width: 0;
   }
 
   .card,
